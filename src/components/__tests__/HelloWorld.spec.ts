@@ -16,6 +16,16 @@ describe("HelloWorld", () => {
     await window.customElements.whenDefined("hello-world");
     expect(wrapper.html()).toContain("Hello, World!");
   });
+  it("fails to render inside Vue Component", async () => {
+    const wrapper = mount(CustomElementBlock, {});
+    await window.customElements.whenDefined("hello-world");
+    await nextTick();
+    console.log("!!Wrapper!!");
+    console.log(wrapper.html());
+    console.log("!!Wrapper!!");
+
+    expect(wrapper.html()).toContain("Hello, World!");
+  });
   it("renders inside Vue Component", async () => {
     const div = document.createElement("div");
     const container = document.body.appendChild(div);
